@@ -1,0 +1,82 @@
+/* Base Styles & Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+.container { width: 90%; max-width: 1200px; margin: 20px auto; }
+
+/* Navigation - Using FLEXBOX */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #004d40;
+    color: white;
+    padding: 1rem 5%;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+.nav-links li { margin-left: 20px; }
+.nav-links a { color: white; text-decoration: none; font-weight: bold; }
+.nav-links a.active { border-bottom: 2px solid #4db6ac; }
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+.hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+/* Destination Cards - Using CSS GRID (Mobile First) */
+.destinations-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr; /* Mobile: Single column */
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-5px); }
+.card img { width: 100%; height: 200px; object-fit: cover; }
+.card-body { padding: 15px; }
+
+/* Form Styles */
+form { display: flex; flex-direction: column; gap: 10px; }
+input, textarea { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+button { background: #004d40; color: white; padding: 10px; border: none; cursor: pointer; border-radius: 4px; }
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+/* Tablet View (600px - 900px) */
+@media (min-width: 600px) {
+    .destinations-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns */
+    }
+    /* Requirement: 2-1 layout. We make the 3rd card span 2 columns */
+    .card:nth-child(3) {
+        grid-column: span 2;
+    }
+}
+
+/* Desktop View (> 900px) */
+@media (min-width: 900px) {
+    .destinations-grid {
+        grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
+    }
+    .card:nth-child(3) {
+        grid-column: span 1; /* Reset the span from tablet */
+    }
+    .hero h1 { font-size: 4rem; }
+}
